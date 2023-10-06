@@ -3,11 +3,45 @@ from functools import partial
 
 
 class Dataset:
-    def __init__(self, dataset, max_length):
+    """
+    A class for loading and preprocessing a text dataset for a given model.
+
+    Args:
+        dataset (str): The name of the dataset to load.
+        max_length (int): The maximum length of input sequences.
+
+    Attributes:
+        dataset (datasets.Dataset): The loaded dataset.
+        max_length (int): The maximum length of input sequences.
+
+    Methods:
+        format_prompt(sample: dict) -> dict:
+            Formats a dataset sample into a model input prompt.
+
+        preprocess_batch(batch: dict, tokenizer) -> dict:
+            Preprocesses a batch of samples using the tokenizer.
+
+        preprocess_dataset(tokenizer) -> datasets.Dataset:
+            Preprocesses the entire dataset using the provided tokenizer.
+
+    """
+
+    def __init__(self, dataset: str, max_length: int):
         self.dataset = load_dataset(dataset, split='train')
         self.max_length = max_length
 
-    def format_prompt(self, sample):
+    def format_prompt(self, sample: dict) -> dict:
+        """
+        Formats a dataset sample into a model input prompt.
+
+        Args:
+            sample (dict): A dictionary containing dataset sample information.
+
+        Returns:
+            dict: The formatted sample with a 'text' field containing the prompt.
+
+        """
+        # Constants for different sections in the prompt
         INTRO_BLURB = 'Below is an instruction that describes a task. Write a response that appropriately completes the request.'
         INSTRUCTION_KEY = '### Instruction:'
         INPUT_KEY = 'Input:'
@@ -29,7 +63,18 @@ class Dataset:
 
         return sample
 
-    def preprocess_batch(self, batch, tokenizer):
+    def preprocess_batch(self, batch: dict, tokenizer) -> dict:
+        """
+        Preprocesses a batch of samples using the tokenizer.
+
+        Args:
+            batch (dict): A batch of samples.
+            tokenizer: The tokenizer to use for preprocessing.
+
+        Returns:
+            dict: The preprocessed batch.
+
+        """
         return tokenizer(
             batch['text'],
             max_length=self.max_length,
@@ -37,6 +82,17 @@ class Dataset:
         )
 
     def preprocess_dataset(self, tokenizer):
+        """
+        SOURCE https://github.com/databrickslabs/dolly/blob/master/training/trainer.py
+        Preprocesses the entire dataset using the provided tokenizer.
+
+        Args:
+            tokenizer: The tokenizer to use for preprocessing.
+
+        Returns:
+            datasets.Dataset: The preprocessed dataset.
+
+        """
         _preprocessing_function = partial(
             self.preprocess_batch, tokenizer=tokenizer)
         dataset = self.dataset.map(self.format_prompt)

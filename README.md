@@ -70,8 +70,8 @@ The project structure is organized as follows:
 ```
 project-root/
   ├── README.md
-  ├── main.py        # Training script (customize for your dataset)
-  ├── eval.py          # Inference script for question answering
+  ├── main.py               # Training script (customize for your dataset)
+  ├── eval.py               # Inference script for question answering
   ├── model.py              # Llama model definition and utilities
   ├── dataset.py            # Dataset loading and preprocessing
   └── requirements.txt      # List of Python dependencies
@@ -85,6 +85,6 @@ This project is licensed under the MIT License.
 
 **Check Out Heise Mind**
 
-If you're interested in AI, check out my YouTube channel, [Heise Mind](https://www.youtube.com/@HeiseMind). I create deep-tech content about a variety of machine learning-related topics.
+If you're interested in AI, check out my YouTube channel, [Heise Mind](https://www.youtube.com/@HeiseMind). I create deep-tech content about a variety of ML-related topics.
 
 You might find my video on "Llama 2 Fine Tuning with QLoRA" particularly helpful: [Watch the Video](https://www.youtube.com/watch?v=4PusFiTkytE).

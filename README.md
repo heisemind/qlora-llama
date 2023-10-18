@@ -87,4 +87,4 @@ This project is licensed under the MIT License.
 
 If you're interested in AI, check out my YouTube channel, [Heise Mind](https://www.youtube.com/@HeiseMind). I create deep-tech content about a variety of ML-related topics.
 
-You might find my video on "Llama 2 Fine Tuning with QLoRA" particularly helpful: [Watch the Video](https://www.youtube.com/watch?v=4PusFiTkytE).
+You might find my video on "Llama 2 Fine Tuning with QLoRA" particularly helpful: [Watch the Video](https://www.youtube.com/watch?v=AH7R6AfRPCg).
